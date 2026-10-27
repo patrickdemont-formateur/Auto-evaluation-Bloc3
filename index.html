@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Auto-évaluation · Outils du projet d'amélioration</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<main class="container">
+
+  <header class="hero">
+    <p class="eyebrow" id="titre-formation">CQPM 0251 · Bloc 3</p>
+    <h1>Auto-évaluation : outils et méthodes du projet d'amélioration</h1>
+    <p class="lead">Pour que la formation parte de ce que vous savez déjà, indiquez pour chaque outil
+      où vous en êtes. Il n'y a ni bonne ni mauvaise réponse : plus vos réponses sont sincères,
+      mieux la formation sera adaptée.</p>
+    <ul><li>⏱ 5 à 8 minutes</li><li>42 outils</li><li>Un seul choix par outil</li></ul>
+  </header>
+
+  <div id="banner"></div>
+
+  <form id="form" novalidate autocomplete="off">
+
+    <section class="card" id="identite">
+      <label class="field" for="prenom">Votre prénom</label>
+      <input type="text" id="prenom" name="prenom" maxlength="40" placeholder="Par exemple : Camille" autocomplete="given-name">
+      <p class="muted small" style="margin-top:10px">Seul votre prénom est demandé. Le formateur s'en sert pour préparer des appuis individuels.</p>
+    </section>
+
+    <section class="card" id="echelle">
+      <h2>Comment répondre ?</h2>
+      <p class="muted" style="margin-top:6px">Pour chaque outil, choisissez le niveau qui vous correspond le mieux aujourd'hui.</p>
+      <ul class="legend-list" id="legend"></ul>
+    </section>
+
+    <div class="progress" id="progress" aria-live="polite">
+      <div class="progress-row"><span id="progress-txt">0 / 42 outils renseignés</span><span id="progress-pct">0 %</span></div>
+      <div class="bar"><i id="progress-bar"></i></div>
+    </div>
+
+    <div id="etapes"></div>
+
+    <section class="card submit">
+      <h2>C'est terminé ?</h2>
+      <p class="muted" style="margin-top:6px">Vérifiez votre prénom, puis envoyez vos réponses.</p>
+      <button class="btn big" type="submit" id="envoyer">Envoyer mes réponses</button>
+      <p class="msg" id="msg" role="alert"></p>
+    </section>
+  </form>
+
+  <section class="card merci" id="merci" hidden>
+    <div class="check">✓</div>
+    <h2 id="merci-titre">Merci !</h2>
+    <p class="muted" id="merci-sous">Vos réponses ont bien été transmises.</p>
+    <div class="recap">
+      <div class="r-ko"><b id="r-ko">0</b><span>à découvrir</span></div>
+      <div class="r-mid"><b id="r-mid">0</b><span>à consolider</span></div>
+      <div class="r-ok"><b id="r-ok">0</b><span>maîtrisés</span></div>
+    </div>
+    <p class="muted small" id="merci-note"></p>
+    <button class="btn ghost" type="button" id="modifier" style="margin-top:20px">Modifier mes réponses</button>
+  </section>
+
+</main>
+<script src="config.js"></script>
+<script src="outils.js"></script>
+<script src="assets/questionnaire.js"></script>
+</body>
+</html>

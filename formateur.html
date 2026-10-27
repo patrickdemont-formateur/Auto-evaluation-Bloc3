@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Espace animateur · Cartographie des connaissances</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand">Cartographie des connaissances<small id="sous-titre">CQPM 0251 · Bloc 3</small></div>
+    <nav class="tabs" id="tabs" hidden>
+      <button class="tab-btn on" data-tab="carto">Cartographie</button>
+      <button class="tab-btn" data-tab="matrice">Matrice détaillée</button>
+      <button class="tab-btn" data-tab="stagiaires">Par stagiaire</button>
+      <button class="tab-btn" data-tab="partager">QR code</button>
+    </nav>
+  </div>
+</header>
+
+<main class="container wide">
+
+  <!-- Accès -->
+  <section class="card gate" id="gate">
+    <p class="eyebrow">Espace animateur</p>
+    <h1>Ouvrir la cartographie</h1>
+    <p class="muted" id="gate-texte" style="margin-top:8px">Saisissez la clé animateur définie dans le script Google.</p>
+    <form class="row" id="gate-form">
+      <input type="password" id="cle" placeholder="Clé animateur" autocomplete="current-password">
+      <button class="btn" type="submit">Ouvrir</button>
+    </form>
+    <p class="msg" id="gate-msg" role="alert"></p>
+    <p class="small" style="margin-top:22px"><a href="#" id="demo-lien">Voir un exemple avec des données fictives</a>
+      &nbsp;·&nbsp; <a href="#" id="qr-lien">Générer le QR code seul</a></p>
+  </section>
+
+  <!-- Tableau de bord -->
+  <div id="dashboard" hidden>
+    <div class="banner test" id="demo-banner" hidden><b>Mode démonstration.</b> Ces données sont fictives : elles montrent le rendu de la cartographie.</div>
+    <div class="toolbar">
+      <select id="f-session" aria-label="Session" hidden></select>
+      <select id="f-cat" aria-label="Catégorie d'outils">
+        <option value="">Tous les outils</option>
+        <option value="Socle">Socle uniquement</option>
+        <option value="Approfondissement">Approfondissement uniquement</option>
+      </select>
+      <span class="grow"></span>
+      <label class="chk" id="auto-wrap"><input type="checkbox" id="auto"> Actualiser toutes les <span id="auto-s">30</span> s</label>
+      <button class="btn ghost sm" id="refresh" type="button">↻ Actualiser</button>
+      <button class="btn ghost sm" id="csv" type="button">Exporter (CSV)</button>
+      <button class="btn ghost sm" id="print" type="button">Imprimer / PDF</button>
+    </div>
+
+    <section id="tab-carto"></section>
+    <section id="tab-matrice" hidden></section>
+    <section id="tab-stagiaires" hidden></section>
+    <section id="tab-partager" hidden></section>
+  </div>
+</main>
+
+<div class="projection" id="projection" hidden title="Cliquer pour fermer">
+  <h2>Scannez pour répondre au questionnaire</h2>
+  <canvas id="proj-canvas"></canvas>
+  <p class="muted" id="proj-url"></p>
+</div>
+
+<script src="config.js"></script>
+<script src="outils.js"></script>
+<script src="assets/qrcode.js"></script>
+<script src="assets/formateur.js"></script>
+</body>
+</html>
