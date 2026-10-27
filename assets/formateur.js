@@ -168,8 +168,8 @@
 
   /* ================= QR code ================= */
   function urlQuestionnaire() {
-    return location.href.split('#')[0].split('?')[0].replace(/formateur\.html$/, '') + 'index.html';
-  }
+    return location.href.split('#')[0].split('?')[0].replace(/[^\/]*$/, '') + 'index.html';
+    }
   function vuePartager() {
     return '<div class="card share"><div><canvas id="qr-canvas" width="400" height="400"></canvas></div><div>' +
       '<p class="eyebrow">Partager le questionnaire</p><h2 style="margin:6px 0 10px">QR code d\'accès</h2>' +
