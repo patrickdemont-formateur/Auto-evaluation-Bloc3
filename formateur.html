@@ -16,6 +16,7 @@
       <button class="tab-btn on" data-tab="carto">Cartographie</button>
       <button class="tab-btn" data-tab="matrice">Matrice détaillée</button>
       <button class="tab-btn" data-tab="stagiaires">Par stagiaire</button>
+      <button class="tab-btn" data-tab="gerer">Gérer les réponses</button>
       <button class="tab-btn" data-tab="partager">QR code</button>
     </nav>
   </div>
@@ -41,7 +42,7 @@
   <div id="dashboard" hidden>
     <div class="banner test" id="demo-banner" hidden><b>Mode démonstration.</b> Ces données sont fictives : elles montrent le rendu de la cartographie.</div>
     <div class="toolbar">
-      <select id="f-session" aria-label="Session" hidden></select>
+      <select id="f-groupe" aria-label="Groupe" title="Filtrer les réponses par groupe"></select>
       <select id="f-cat" aria-label="Catégorie d'outils">
         <option value="">Tous les outils</option>
         <option value="Socle">Socle uniquement</option>
@@ -54,9 +55,12 @@
       <button class="btn ghost sm" id="print" type="button">Imprimer / PDF</button>
     </div>
 
+    <p class="contexte" id="contexte"></p>
+
     <section id="tab-carto"></section>
     <section id="tab-matrice" hidden></section>
     <section id="tab-stagiaires" hidden></section>
+    <section id="tab-gerer" hidden></section>
     <section id="tab-partager" hidden></section>
   </div>
 </main>

@@ -52,7 +52,7 @@ Ouvrez `config.js` et remplacez `COLLER_ICI_L_URL_DU_SCRIPT_GOOGLE` par l'URL co
 1. Ouvrez `https://VOTRE-COMPTE.github.io/NOM-DU-DEPOT/formateur.html`.
 2. Saisissez la clé animateur, puis l'onglet **QR code** : le lien du questionnaire est déjà calculé.
 3. Boutons disponibles : **projeter en plein écran** (pour la salle), **télécharger en PNG** (pour une diapositive), **copier le lien**.
-4. Pour séparer plusieurs groupes, renseignez le champ **Session** : le libellé est enregistré dans le Sheet.
+4. Pour séparer plusieurs groupes, renseignez le champ **Groupe** : le nom est enregistré dans le Sheet avec chaque réponse. Utilisez un QR code différent par groupe.
 
 ### 7. Tester avant la formation
 Répondez vous-même au questionnaire depuis votre téléphone, puis vérifiez que la ligne apparaît dans l'onglet « Réponses » du Google Sheet et dans la cartographie. Supprimez ensuite la ligne de test dans le Sheet.
@@ -76,10 +76,29 @@ Répondez vous-même au questionnaire depuis votre téléphone, puis vérifiez q
 
 Les pastilles **Socle** et **Niveaux hétérogènes** (écart d'au moins 2 niveaux entre stagiaires) aident à repérer où constituer des binômes : celui qui maîtrise peut aider celui qui découvre.
 
-Onglets : **Cartographie** (synthèse, priorités, trois colonnes, vue par étape), **Matrice détaillée** (carte de chaleur stagiaires × outils), **Par stagiaire** (profil et socle à travailler), **QR code**. Le bouton **Exporter (CSV)** produit un fichier lisible dans Excel, et **Imprimer / PDF** garde une trace de la séance.
+Onglets : **Cartographie** (synthèse, priorités, trois colonnes, vue par étape), **Matrice détaillée** (carte de chaleur : la colonne « Groupe », juste après l'outil, donne le résultat du groupe filtré), **Par stagiaire** (profil et socle à travailler), **Gérer les réponses** et **QR code**. Le **filtre par groupe**, en haut de page, s'applique à la cartographie, à la matrice, à la vue par stagiaire et à l'export CSV. Le bouton **Exporter (CSV)** produit un fichier lisible dans Excel, et **Imprimer / PDF** garde une trace de la séance.
+
+## Gérer les groupes et supprimer des réponses
+
+L'onglet **Gérer les réponses** répond à l'accumulation des résultats :
+
+- **Affecter à un groupe** : cochez des stagiaires, saisissez un nom de groupe, cliquez sur « Affecter la sélection ». C'est la méthode pour classer rétroactivement des réponses reçues sans groupe. Le filtre du haut propose ensuite ce groupe.
+- **Supprimer des stagiaires** ou **supprimer un groupe entier** : une confirmation est demandée. Les lignes ne sont pas détruites : elles sont **déplacées dans l'onglet « Corbeille »** du Google Sheet (avec la date de suppression) et restent récupérables en les recopiant dans « Réponses ».
+- Chaque action s'applique à **toutes les réponses** du stagiaire concerné (plusieurs envois inclus), identifié par son prénom et son groupe.
+
+Ces actions modifient le Google Sheet par l'intermédiaire du script : elles exigent la **clé animateur** et la version à jour de `Code.gs` (voir ci-dessous).
+
+## Mise à jour depuis une version précédente du kit
+
+1. **GitHub** : remplacez uniquement `formateur.html`, `assets/formateur.js`, `assets/style.css` et `README.md`. **Ne touchez pas à `config.js`** (il contient l'adresse de votre script).
+2. **Script Google** : ouvrez Extensions > Apps Script, remplacez tout le code par le contenu du nouveau `Code.gs`, puis **remettez votre clé** à la ligne `const CLE_FORMATEUR = '…';` (le fichier fourni contient `CHANGEZ-MOI`).
+3. **Redéployez** : Déployer > Gérer les déploiements > icône crayon > Version : **Nouvelle version** > Déployer. L'adresse (`/exec`) reste la même.
+4. Rechargez `formateur.html` avec Ctrl+F5.
+
+Si l'onglet « Gérer les réponses » affiche « le script Google n'est pas à jour », c'est que l'étape 2 ou 3 n'est pas terminée.
 
 ## Bon à savoir
-- **Un stagiaire peut renvoyer ses réponses** : chaque envoi crée une ligne dans le Sheet, et la cartographie ne retient que le dernier envoi par prénom (accents et majuscules ignorés). Deux stagiaires de même prénom dans une même session seraient fusionnés : ajoutez une initiale (« Marie L. »).
+- **Un stagiaire peut renvoyer ses réponses** : chaque envoi crée une ligne dans le Sheet, et la cartographie ne retient que le dernier envoi par prénom (accents et majuscules ignorés). Deux stagiaires de même prénom dans un même groupe seraient fusionnés : ajoutez une initiale (« Marie L. »).
 - **Modifier la liste des outils** : éditez `outils.js` (nom, définition, catégorie Socle ou Approfondissement). Le Google Sheet ajoute lui-même les nouvelles colonnes.
 - **Confidentialité** : seul le prénom est collecté, sans compte ni cookie. L'adresse du questionnaire est publique : toute personne qui la connaît peut envoyer une réponse. La lecture des résultats, elle, exige la clé animateur. Ne diffusez pas cette clé, et ne la mettez jamais dans `config.js`.
 - **Mode test** : tant que `config.js` ne contient pas l'URL du script, le questionnaire s'affiche avec un bandeau « Mode test » et n'envoie rien. L'espace animateur propose un **exemple avec données fictives** pour découvrir le rendu.
